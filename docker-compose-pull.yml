@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db:
+    image: arsen7076/my-django-app-db:latest
+    env_file: 
+      - .env.db
+
+  web:
+    image: arsen7076/my-django-app-web:latest
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env.web

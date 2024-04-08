@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'panorbit.wsgi.application'
 DATABASES = { 
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'world',
-        'USER': 'root',
-        'PASSWORD': '123',
-        'HOST': 'mysql-docker-local',
-        'PORT': '3306',
+        'NAME': os.environ.get('MYSQL_DB'),
+        'USER': os.environ.get('MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+        'HOST': os.environ.get("MYSQL_HOST"),
+        'PORT': os.environ.get('MYSQL_PORT'),
     }   
 }
 # DATABASES = { 
@@ -163,7 +163,7 @@ LOGIN_URL = 'signup'
 # email configurations
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'xxxx'
-EMAIL_HOST_PASSWORD = 'xxxx'
+EMAIL_HOST_USER = os.environ.get('SMTP_USER', 'admin@admin.com')  # Default to 'admin@admin.com' if not found
+EMAIL_HOST_PASSWORD = os.environ.get('SMTP_PASSWORD', '123456789')  # Default to '123456789' if not found
 EMAIL_PORT = 587
 
